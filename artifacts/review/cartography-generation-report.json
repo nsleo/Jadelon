@@ -1,0 +1,146 @@
+{
+  "generatedAssets": [
+    "mapa-atlas-clean-source-candidate",
+    "mapa-globo-projection-p55",
+    "mapa-globo-projection-p60",
+    "mapa-globo-projection-p65",
+    "overlay-semantic-clean-source-candidate"
+  ],
+  "sourceValidation": {
+    "clean": {
+      "checksum": "97599b21977841274bca0814455e575b",
+      "dimensions": "2048 x 1536",
+      "format": "png",
+      "origin": "assets/reference/mapa-mundi-original-sem-labels.png"
+    },
+    "original": {
+      "checksum": "24e4b52ba7625038ca5b6317076658fd",
+      "dimensions": "2048 x 1536",
+      "format": "jpeg",
+      "origin": "assets/reference/mapa-mundi-original.jpg"
+    },
+    "labelChecks": [
+      {
+        "id": "snoklem",
+        "meanDifference": 41.85114867576244,
+        "changedRatio": 0.1856440609951846,
+        "passed": true
+      },
+      {
+        "id": "baaldrum",
+        "meanDifference": 14.654780727302988,
+        "changedRatio": 0.15114005159357577,
+        "passed": true
+      },
+      {
+        "id": "bergskrona",
+        "meanDifference": 16.515248226950355,
+        "changedRatio": 0.19881205673758864,
+        "passed": true
+      },
+      {
+        "id": "cathizar",
+        "meanDifference": 20.954592427248677,
+        "changedRatio": 0.15321180555555555,
+        "passed": true
+      },
+      {
+        "id": "neverith",
+        "meanDifference": 3.5919762641898867,
+        "changedRatio": 0.015630374957000343,
+        "passed": true
+      },
+      {
+        "id": "xharas-tor",
+        "meanDifference": 4.663488372093023,
+        "changedRatio": 0.016608527131782947,
+        "passed": true
+      }
+    ],
+    "outsideDifferenceRatio": 0.03344329662908439
+  },
+  "supersededAssetIds": [
+    "mapa-base-sem-labels-candidate",
+    "mapa-atlas-2d-candidate",
+    "mapa-globo-equirectangular-a",
+    "mapa-globo-equirectangular-b"
+  ],
+  "projectionProfiles": [
+    {
+      "assetId": "mapa-globo-projection-p55",
+      "latitudeBand": 55,
+      "textureWidth": 4096,
+      "textureHeight": 2048,
+      "projectedMapWidth": 1669,
+      "projectedMapHeight": 1252,
+      "topPadding": 398,
+      "bottomPadding": 398,
+      "leftPadding": 1214,
+      "rightPadding": 1213,
+      "scaleApplied": 0.8151,
+      "seamDelta": 300.1922587156296
+    },
+    {
+      "assetId": "mapa-globo-projection-p60",
+      "latitudeBand": 60,
+      "textureWidth": 4096,
+      "textureHeight": 2048,
+      "projectedMapWidth": 1820,
+      "projectedMapHeight": 1365,
+      "topPadding": 342,
+      "bottomPadding": 341,
+      "leftPadding": 1138,
+      "rightPadding": 1138,
+      "scaleApplied": 0.8887,
+      "seamDelta": 299.7801388502121
+    },
+    {
+      "assetId": "mapa-globo-projection-p65",
+      "latitudeBand": 65,
+      "textureWidth": 4096,
+      "textureHeight": 2048,
+      "projectedMapWidth": 1972,
+      "projectedMapHeight": 1479,
+      "topPadding": 285,
+      "bottomPadding": 284,
+      "leftPadding": 1062,
+      "rightPadding": 1062,
+      "scaleApplied": 0.9629,
+      "seamDelta": 299.3394385576248
+    }
+  ],
+  "maskReports": [
+    {
+      "id": "bergskrona-mask",
+      "sourceAssetId": "mapa-atlas-clean-source-candidate",
+      "coverage": 0.1527
+    },
+    {
+      "id": "baaldrum-mask",
+      "sourceAssetId": "mapa-atlas-clean-source-candidate",
+      "coverage": 0.0813
+    },
+    {
+      "id": "snoklem-mask",
+      "sourceAssetId": "mapa-atlas-clean-source-candidate",
+      "coverage": 0.1621
+    },
+    {
+      "id": "cathizar-mask",
+      "sourceAssetId": "mapa-atlas-clean-source-candidate",
+      "coverage": 0.1854
+    },
+    {
+      "id": "neverith-mask",
+      "sourceAssetId": "mapa-atlas-clean-source-candidate",
+      "coverage": 0.0399
+    },
+    {
+      "id": "xharas-tor-mask",
+      "sourceAssetId": "mapa-atlas-clean-source-candidate",
+      "coverage": 0.1198
+    }
+  ],
+  "recommendation": "p60",
+  "elapsedSeconds": 7.67
+}
