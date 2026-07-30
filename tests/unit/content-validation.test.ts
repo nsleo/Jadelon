@@ -141,6 +141,8 @@ test("public assets are validated and exposed through the runtime", () => {
   assert.equal(assets.length, publicAssets.length);
   assert.ok(getPublicAssetById("map-shell-background"));
   assert.ok(getPublicAssetById("map-globe-prototype"));
+  assert.ok(getPublicAssetById("map-atlas-jadelon-v1"));
+  assert.ok(getPublicAssetById("map-globe-jadelon-v1"));
   assert.equal(
     assets.every((asset) => asset.publicUrl.startsWith("/assets/jadelon/")),
     true,
@@ -155,7 +157,7 @@ test("public entities reference asset ids instead of internal file paths", () =>
   const world = getPublicEntityById("world-jadelon");
 
   assert.ok(world);
-  assert.equal(world.media[0]?.assetId, "map-shell-background");
+  assert.equal(world.media[0]?.assetId, "map-atlas-jadelon-v1");
   assert.equal("path" in world.media[0], false);
 });
 

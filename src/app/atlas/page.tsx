@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 };
 
 export default function AtlasPage() {
-  const mapAsset = getPublicAssetById("map-shell-background");
+  const mapAsset = getPublicAssetById("map-atlas-jadelon-v1");
 
   if (!mapAsset) {
-    throw new Error("Atlas page requires the background map asset.");
+    throw new Error("Atlas page requires the promoted atlas asset.");
   }
 
   return (

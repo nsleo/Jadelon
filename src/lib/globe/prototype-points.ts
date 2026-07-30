@@ -103,6 +103,16 @@ export function getPrototypeGlobeDataset(): PrototypeGlobeDataset {
   return createPrototypeGlobeDataset(projectMapAsset(mapAsset));
 }
 
+export function getGlobeDatasetByAssetId(assetId: string): PrototypeGlobeDataset {
+  const mapAsset = getPublicAssetById(assetId);
+
+  if (!mapAsset) {
+    throw new Error(`Globe dataset requires the "${assetId}" asset.`);
+  }
+
+  return createPrototypeGlobeDataset(projectMapAsset(mapAsset));
+}
+
 export function latLonToVector3(
   latitude: number,
   longitude: number,

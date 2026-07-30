@@ -37,13 +37,22 @@ export function TextLink({
   href,
   children,
   className,
+  ariaLabel,
+  testId,
 }: {
   href: string;
   children: ReactNode;
   className?: string;
+  ariaLabel?: string;
+  testId?: string;
 }) {
   return (
-    <Link className={joinClasses("text-link", className)} href={href}>
+    <Link
+      aria-label={ariaLabel}
+      className={joinClasses("text-link", className)}
+      data-testid={testId}
+      href={href}
+    >
       {children}
     </Link>
   );

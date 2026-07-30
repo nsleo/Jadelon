@@ -6,6 +6,7 @@ import {
   SectionHeading,
   TextLink,
 } from "@/components/site/primitives";
+import { JadelonGlobeLoader } from "@/components/globe/jadelon-globe-loader";
 import { CartographicImage } from "@/components/site/cartographic-image";
 import {
   getPublicAssetById,
@@ -38,8 +39,7 @@ const sixStructure = [
 ];
 
 export function HomePage() {
-  const shellBackground = getPublicAssetById("map-shell-background");
-  const shellInitial = getPublicAssetById("map-shell-initial");
+  const atlasAsset = getPublicAssetById("map-atlas-jadelon-v1");
   const world = getPublicEntityById("world-jadelon");
   const baaldrum = getPublicEntityById("continent-baaldrum");
   const snoklem = getPublicEntityById("continent-snoklem");
@@ -48,7 +48,7 @@ export function HomePage() {
     .map((id) => getPublicEntityById(id))
     .filter((entity): entity is PublicEntity => Boolean(entity));
 
-  if (!shellBackground || !shellInitial || !world || !baaldrum || !snoklem || !guerra) {
+  if (!atlasAsset || !world || !baaldrum || !snoklem || !guerra) {
     throw new Error("HomePage requires the validated public runtime and map assets.");
   }
 
@@ -59,8 +59,17 @@ export function HomePage() {
           <AtlasLabel>Jadelon</AtlasLabel>
           <h1>Um mundo registrado por mapas, eras e testemunhos.</h1>
           <p className="hero-copy__lead">{world.summary}</p>
+          <p className="hero-copy__motto">
+            Tudo o que existe pode ser conhecido. Nem tudo deveria ser.
+          </p>
           <div className="hero-copy__actions">
-            <TextLink className="text-link--cta" href="/atlas">Explore o Atlas</TextLink>
+            <TextLink
+              className="text-link--cta"
+              href="/atlas"
+              testId="hero-primary-atlas-cta"
+            >
+              Explore o Atlas
+            </TextLink>
             <TextLink className="text-link--cta" href="/cronologia">Percorra a Cronologia</TextLink>
           </div>
           <dl className="hero-copy__index">
@@ -83,17 +92,11 @@ export function HomePage() {
           <div className="hero-stage__visual">
             <div aria-hidden="true" className="hero-stage__grid" />
             <div aria-hidden="true" className="hero-stage__aperture" />
-            <CartographicImage
-              alt={shellInitial.alt ?? ""}
-              className="hero-stage__image"
-              priority
-              sizes="(max-width: 900px) 100vw, 48vw"
-              src={shellInitial.publicUrl}
-            />
+            <JadelonGlobeLoader priority publicMode />
           </div>
           <div className="hero-stage__measure hero-stage__measure--bottom">
-            <CoordinateLabel>Atlas</CoordinateLabel>
-            <CoordinateLabel>Cronologia conhecida</CoordinateLabel>
+            <CoordinateLabel>Atlas exploravel</CoordinateLabel>
+            <CoordinateLabel>Registros preservados</CoordinateLabel>
           </div>
         </div>
       </SectionFrame>
@@ -133,11 +136,11 @@ export function HomePage() {
           />
           <div className="atlas-window__map">
             <CartographicImage
-              alt={shellBackground.alt ?? ""}
+              alt={atlasAsset.alt ?? ""}
               className="atlas-window__image"
               priority
               sizes="(max-width: 900px) 100vw, 56vw"
-              src={shellBackground.publicUrl}
+              src={atlasAsset.publicUrl}
             />
             <div aria-hidden="true" className="atlas-window__wash" />
           </div>

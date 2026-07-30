@@ -77,7 +77,7 @@ Decisao tecnica registrada em `2026-07-29`:
 
 - `P60` aprovado como `approved-candidate`
 - `P60` aprovado como `approved-for-promotion`
-- `P60` ainda `not-promoted`
+- `P60` promovido em `2026-07-29`
 - `P55` retido como `retained-as-fallback`
 - `P55` marcado como `not-selected`
 - `P65` retido como `retained-for-reference`
@@ -85,6 +85,42 @@ Decisao tecnica registrada em `2026-07-29`:
 - nenhuma destas projecoes define latitude canonica ou geografia canonica
 - `P60` representa apenas a decisao tecnica de projecao da V1
 - fonte master oficial: `assets/reference/mapa-mundi-original-sem-labels.png`
+
+## Assets promovidos para producao
+
+### map-atlas-jadelon-v1
+
+- origem: `assets/derived/cartography/candidates/mapa-atlas-clean-source-candidate.png`
+- destino PNG: `assets/derived/cartography/approved/mapa-atlas-jadelon-v1.png`
+- destino WebP: `public/assets/jadelon/maps/mapa-atlas-jadelon-v1.webp`
+- checksum PNG: `8760144b11a3d01375786ac22128a8cb`
+- checksum WebP: `4480122866e5740dba8bf95f0926e81b`
+- dimensoes: `2048 x 1536`
+- status: `production`
+- fallback oficial: `sim`
+- decisao tecnica: derivado 2D limpo oficial, promovido sem alterar a geografia canonica
+
+### map-globe-jadelon-v1
+
+- origem: `assets/derived/cartography/candidates/mapa-globo-projection-p60.png`
+- destino PNG: `assets/derived/cartography/approved/mapa-globo-jadelon-v1.png`
+- destino WebP: `public/assets/jadelon/maps/mapa-globo-jadelon-v1.webp`
+- checksum PNG: `7ee69c9f192953313fe1ebde77892634`
+- checksum WebP: `1af08e5b9e9c33435e8659b53a83ff92`
+- dimensoes: `4096 x 2048`
+- status: `production`
+- fallback oficial relacionado: `map-atlas-jadelon-v1`
+- decisao tecnica: projecao `P60` promovida para o runtime publico; nao representa latitude canonica
+
+### overlay-semantic-jadelon-v1
+
+- origem: `assets/derived/cartography/candidates/overlay-semantic-clean-source-candidate.json`
+- destino derivado: `assets/derived/cartography/approved/overlay-semantic-jadelon-v1.json`
+- destino publico: `public/assets/jadelon/maps/overlay-semantic-jadelon-v1.json`
+- checksum: `6d1e8f2989eab669142d80b00d460372`
+- dimensoes: `2048 x 1536` coordinate space
+- status: `production`
+- decisao tecnica: overlay semantico promovido sobre o atlas limpo oficial
 
 ### mapa-mundi-original-sem-labels
 
@@ -158,7 +194,7 @@ Classificacao:
 - status: `candidate`
 - decisao-v1: `approved-candidate`
 - promocao: `approved-for-promotion`
-- rollout: `not-promoted`
+- rollout: `promoted-to-map-globe-jadelon-v1`
 
 ### mapa-globo-projection-p65
 

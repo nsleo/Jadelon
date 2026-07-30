@@ -19,4 +19,11 @@ export type PublicAsset = {
   width?: number;
   height?: number;
   alt?: string;
+  checksum?: string;
+  sourceAssetId?: string;
+  projectionKey?: string;
+  latitudeBand?: number;
+  fallbackAssetId?: string;
+  promotedAt?: string;
+  technicalDecision?: string;
 };

@@ -26,8 +26,8 @@ export const publicEntities: BaseEntity[] = [
     media: [
       {
         kind: "map",
-        assetId: "map-shell-background",
-        alt: "Derivado cartografico de prototipo do mapa de Jadelon usado como base visual provisoria.",
+        assetId: "map-atlas-jadelon-v1",
+        alt: "Mapa limpo oficial de Jadelon usado como base visual publica do Atlas.",
       },
     ],
     sources: [

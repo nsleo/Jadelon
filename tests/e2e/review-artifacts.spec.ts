@@ -33,6 +33,14 @@ test.beforeAll(() => {
   fs.mkdirSync(reviewDir, { recursive: true });
 });
 
+async function waitForPublicGlobe(page: import("@playwright/test").Page) {
+  await expect(page.getByTestId("public-globe")).toHaveAttribute(
+    "data-globe-state",
+    /ready-(2d|3d)/,
+    { timeout: 20000 },
+  );
+}
+
 test("generate requested review screenshots", async ({ page }, testInfo) => {
   if (testInfo.project.name === "desktop-chromium") {
     await page.goto("/prototipos/globo");
@@ -112,5 +120,41 @@ test("record globe interaction demo video", async ({ browser }, testInfo) => {
 
   if (video) {
     fs.copyFileSync(await video.path(), path.join(reviewDir, "globe-interaction-demo-final.webm"));
+  }
+});
+
+test("generate hero review screenshots", async ({ browser, page }, testInfo) => {
+  if (testInfo.project.name === "desktop-chromium") {
+    await page.goto("/");
+    await waitForPublicGlobe(page);
+    await page.locator(".home-hero").screenshot({
+      path: path.join(reviewDir, "hero-p60-desktop-final.png"),
+    });
+
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    await waitForPublicGlobe(page);
+    await page.locator(".home-hero").screenshot({
+      path: path.join(reviewDir, "hero-p60-reduced-motion-final.png"),
+    });
+
+    const fallbackContext = await browser.newContext({
+      javaScriptEnabled: false,
+      viewport: { width: 1440, height: 1080 },
+    });
+    const fallbackPage = await fallbackContext.newPage();
+    await fallbackPage.goto("/");
+    await fallbackPage.locator(".home-hero").screenshot({
+      path: path.join(reviewDir, "hero-p60-fallback-final.png"),
+    });
+    await fallbackContext.close();
+  }
+
+  if (testInfo.project.name === "mobile-chromium") {
+    await page.goto("/");
+    await waitForPublicGlobe(page);
+    await page.locator(".home-hero").screenshot({
+      path: path.join(reviewDir, "hero-p60-mobile-final.png"),
+    });
   }
 });

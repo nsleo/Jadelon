@@ -41,11 +41,42 @@ test("home route exposes the structural shell and primary navigation", async ({ 
   await expect(primaryNav.getByRole("link", { name: "Registros", exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Helix" })).toHaveCount(0);
   await expect(page.getByRole("main")).toBeVisible();
+  await expect(page.getByTestId("public-globe")).toBeVisible();
 
   const bodyText = (await page.locator("body").innerText()).toLowerCase();
   for (const phrase of forbiddenPublicPhrases) {
     expect(bodyText).not.toContain(phrase);
   }
+});
+
+test("home hero uses the promoted public globe without laboratory controls", async ({ page, isMobile }) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") {
+      consoleErrors.push(message.text());
+    }
+  });
+
+  await page.goto("/");
+
+  const publicGlobe = page.getByTestId("public-globe");
+  await expect(publicGlobe).toBeVisible();
+  await expect(publicGlobe).toHaveAttribute("data-texture-id", "map-globe-jadelon-v1");
+  await expect(publicGlobe).toHaveAttribute(
+    "data-texture-url",
+    "/assets/jadelon/maps/mapa-globo-jadelon-v1.webp",
+  );
+  await expect(publicGlobe).toHaveAttribute("data-fallback-asset-id", "map-atlas-jadelon-v1");
+  await expect(page.getByText("Controles de laboratorio do globo")).toHaveCount(0);
+  await expect(page.getByText("Diagnostico do prototipo")).toHaveCount(0);
+
+  if (isMobile) {
+    await expect(publicGlobe).toHaveAttribute("data-globe-state", "ready-2d");
+  } else {
+    await expect(publicGlobe).toHaveAttribute("data-globe-state", /ready-(2d|3d)/);
+  }
+
+  expect(consoleErrors).toEqual([]);
 });
 
 test("skip link targets the main content landmark", async ({ page }) => {
@@ -111,6 +142,7 @@ test("reduced motion collapses transition duration", async ({ page }) => {
   });
 
   expect(["0.01ms", "1e-05s"]).toContain(duration);
+  await expect(page.getByTestId("public-globe")).toHaveAttribute("data-auto-rotate", "off");
 });
 
 test("home and placeholder pages keep semantic headings", async ({ page }) => {
@@ -160,6 +192,13 @@ test("hero title remains responsive without overflow on mobile and desktop", asy
   });
 
   expect(overflow).toBe(false);
+});
+
+test("hero CTA takes the visitor directly to the Atlas", async ({ page }) => {
+  await page.goto("/");
+  await page.getByTestId("hero-primary-atlas-cta").click();
+  await expect(page).toHaveURL(/\/atlas$/);
+  await expect(page.getByRole("heading", { name: "Geografia conhecida" })).toBeVisible();
 });
 
 test("review pages run without development overlays", async ({ page }) => {
