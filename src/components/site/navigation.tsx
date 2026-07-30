@@ -145,6 +145,13 @@ export function SiteHeader() {
           </Link>
         </div>
 
+        <div className="site-header__panel" id={panelId} ref={panelRef}>
+          <SiteNavigation
+            mobileOpen={mobileOpen}
+            onNavigate={() => setMobileOpen(false)}
+          />
+        </div>
+
         <button
           aria-controls={panelId}
           aria-expanded={mobileOpen}
@@ -157,13 +164,6 @@ export function SiteHeader() {
           Menu
         </button>
       </div>
-
-      <div id={panelId} ref={panelRef}>
-        <SiteNavigation
-          mobileOpen={mobileOpen}
-          onNavigate={() => setMobileOpen(false)}
-        />
-      </div>
     </header>
   );
 }
@@ -172,29 +172,18 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="site-footer__grid">
-        <div>
+        <div className="site-footer__brand">
           <AtlasLabel>Jadelon</AtlasLabel>
           <p>
             Um mundo registrado por mapas, eras e testemunhos.
           </p>
         </div>
-        <div>
-          <AtlasLabel>Navegacao</AtlasLabel>
-          <p>
-            <TextLink href="/atlas">Atlas</TextLink>
-            {" · "}
-            <TextLink href="/cronologia">Cronologia</TextLink>
-            {" · "}
-            <TextLink href="/registros">Registros</TextLink>
-          </p>
-        </div>
-        <div>
-          <AtlasLabel>Leitura</AtlasLabel>
-          <p>
-            Certos trechos permanecem incompletos, mas o mapa conhecido ja
-            pode ser percorrido.
-          </p>
-        </div>
+        <nav aria-label="Navegacao do rodape" className="site-footer__nav">
+          <TextLink href="/atlas">Atlas</TextLink>
+          <TextLink href="/cronologia">Cronologia</TextLink>
+          <TextLink href="/figuras">Figuras</TextLink>
+          <TextLink href="/registros">Registros</TextLink>
+        </nav>
       </div>
     </footer>
   );

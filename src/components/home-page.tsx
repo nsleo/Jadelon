@@ -1,7 +1,5 @@
 import {
   AtlasLabel,
-  CoordinateLabel,
-  DividerRune,
   SectionFrame,
   SectionHeading,
   TextLink,
@@ -59,9 +57,6 @@ export function HomePage() {
           <AtlasLabel>Jadelon</AtlasLabel>
           <h1>Um mundo registrado por mapas, eras e testemunhos.</h1>
           <p className="hero-copy__lead">{world.summary}</p>
-          <p className="hero-copy__motto">
-            Tudo o que existe pode ser conhecido. Nem tudo deveria ser.
-          </p>
           <div className="hero-copy__actions">
             <TextLink
               className="text-link--cta"
@@ -70,59 +65,16 @@ export function HomePage() {
             >
               Explore o Atlas
             </TextLink>
-            <TextLink className="text-link--cta" href="/cronologia">Percorra a Cronologia</TextLink>
+            <TextLink className="text-link--cta text-link--ghost" href="/cronologia">
+              Percorra a Cronologia
+            </TextLink>
           </div>
         </div>
 
         <div className="hero-stage">
-          <div className="hero-stage__measure hero-stage__measure--top">
-            <CoordinateLabel>Báaldrum</CoordinateLabel>
-            <CoordinateLabel>Snøklem</CoordinateLabel>
-          </div>
           <div className="hero-stage__visual">
             <JadelonGlobeLoader priority publicMode />
           </div>
-          <div className="hero-stage__measure hero-stage__measure--bottom">
-            <CoordinateLabel>Atlas exploravel</CoordinateLabel>
-            <CoordinateLabel>Registros preservados</CoordinateLabel>
-          </div>
-        </div>
-
-        <dl className="hero-copy__index hero-copy__index--rail">
-          <div>
-            <dt>Territórios</dt>
-            <dd>Báaldrum, Snøklem e Brannslott.</dd>
-          </div>
-          <div>
-            <dt>Leituras</dt>
-            <dd>Atlas, cronologia e registros preservados.</dd>
-          </div>
-        </dl>
-      </SectionFrame>
-
-      <DividerRune />
-
-      <SectionFrame className="intro-band">
-        <div>
-          <SectionHeading
-            eyebrow="Introdução"
-            title="O mundo conhecido se abre por geografia, eras e testemunhos."
-            description="Jadelon aparece aqui como paisagem cartográfica e narrativa, sem um único presente imposto ao leitor."
-          />
-        </div>
-        <div className="intro-band__ledger">
-          <article>
-            <AtlasLabel>Continentes</AtlasLabel>
-            <p>Báaldrum reúne fendas, vulcões e regiões geladas sob um mesmo relevo.</p>
-          </article>
-          <article>
-            <AtlasLabel>Registros preservados</AtlasLabel>
-            <p>Snøklem permanece como um dos eixos geográficos ligados a Brannslott e Ilddrage.</p>
-          </article>
-          <article>
-            <AtlasLabel>Marco central</AtlasLabel>
-            <p>A Guerra das Fendas marca a unificação política de Báaldrum.</p>
-          </article>
         </div>
       </SectionFrame>
 
@@ -130,8 +82,8 @@ export function HomePage() {
         <article className="atlas-window">
           <SectionHeading
             eyebrow="Atlas"
-            title="Territórios, continentes e marcos gravados no mapa conhecido."
-            description="A geografia de Jadelon já pode ser lida como paisagem ampla, com continentes, reinos e pontos de passagem reunidos em um mesmo quadro."
+            title="Geografia conhecida."
+            description="Continentes, reinos e passagens já podem ser percorridos pelo mapa limpo oficial."
           />
           <div className="atlas-window__map">
             <CartographicImage
@@ -145,15 +97,15 @@ export function HomePage() {
           </div>
           <div className="atlas-window__footer">
             <TextLink href="/atlas">Explore o Atlas</TextLink>
-            <CoordinateLabel>Continentes disponíveis: Báaldrum · Snøklem</CoordinateLabel>
+            <p>Báaldrum, Snøklem e Brannslott.</p>
           </div>
         </article>
 
         <article className="chronology-rail">
           <SectionHeading
             eyebrow="Cronologia"
-            title="A cronologia conhecida liga eras, guerras e testemunhos."
-            description="As eras aprovadas permanecem como eixo de leitura para os acontecimentos confirmados."
+            title="Eras, guerras e testemunhos."
+            description="A Guerra das Fendas permanece como marco visível da Era Política."
           />
           <ol className="chronology-rail__list">
             <li>
@@ -182,7 +134,7 @@ export function HomePage() {
           eyebrow="Ilddrage e Helgor"
           title="Duas presenças distintas, inscritas mais por peso do que por explicação."
           description="A leitura permanece aberta, mas o contraste entre estabilidade e ruptura já atravessa o mapa."
-        />
+          />
         <div className="duality-field__composition">
           <article className="duality-monolith">
             <AtlasLabel>Ilddrage</AtlasLabel>
@@ -199,7 +151,6 @@ export function HomePage() {
         <SectionHeading
           eyebrow="Os Seis"
           title="Seis nomes atravessam os registros preservados."
-          description="A leitura pública permanece restrita ao que já pode ser nomeado."
           align="center"
         />
         <ol className="six-ledger__grid">
@@ -218,8 +169,7 @@ export function HomePage() {
         <div className="knowledge-atlas__diagram">
           <SectionHeading
             eyebrow="Magia e Véu"
-            title="Magia e Véu surgem como estudo, fluxo e limite."
-            description="Os registros reúnem apenas o que já pode ser descrito de forma parcial, acadêmica e contida."
+            title="Fluxo, estudo e limite."
           />
           <div className="knowledge-atlas__flows">
             <article>
@@ -236,8 +186,7 @@ export function HomePage() {
         <div className="records-ledger">
           <SectionHeading
             eyebrow="Registros em destaque"
-            title="Guerra das Fendas, Zan-Hau e Báaldrum abrem a leitura."
-            description="Esses registros permanecem como pontos de entrada para a geografia e a cronologia conhecidas."
+            title="Guerra das Fendas, Zan-Hau e Báaldrum."
           />
           <ul className="records-ledger__list">
             {featuredRecords.map((entity) => (

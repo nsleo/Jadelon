@@ -140,14 +140,6 @@ export function JadelonGlobePublic({
         </div>
       ) : null}
 
-      <div className="public-globe__status">
-        <span className="public-globe__status-line" />
-        <p data-testid="public-globe-status">
-          {globeState === "ready-3d"
-            ? "Atlas orbital ativo."
-            : "Atlas visual ativo."}
-        </p>
-      </div>
     </section>
   );
 }
