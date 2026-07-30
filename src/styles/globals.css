@@ -30,6 +30,7 @@
   --color-metal: var(--jadelon-brass);
 
   --container-max: 76rem;
+  --container-wide: 92rem;
   --container-narrow: 58rem;
   --gutter: clamp(1rem, 2vw, 1.5rem);
   --space-1: 0.375rem;
@@ -90,13 +91,13 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.08;
+  opacity: 0.065;
   background:
     linear-gradient(180deg, rgba(9, 11, 12, 0.2), rgba(9, 11, 12, 0.6)),
-    url("/assets/jadelon/maps/prototype/jadelon-shell-map-thumbnail.webp");
+    url("/assets/jadelon/maps/mapa-atlas-jadelon-v1.webp");
   background-position: center top;
   background-size: cover;
-  mix-blend-mode: screen;
+  mix-blend-mode: soft-light;
 }
 
 a {
@@ -183,9 +184,8 @@ ol {
 
 .site-header__inner,
 .site-navigation,
-.site-main,
 .site-footer {
-  width: min(100%, var(--container-max));
+  width: min(100%, var(--container-wide));
   margin: 0 auto;
 }
 
@@ -255,6 +255,9 @@ ol {
 }
 
 .site-main {
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: var(--space-5) var(--gutter) var(--space-8);
 }
 
@@ -711,6 +714,8 @@ ol {
 .section-frame {
   display: grid;
   gap: var(--space-4);
+  width: min(100%, var(--container-max));
+  margin-inline: auto;
   margin-bottom: var(--space-7);
 }
 
@@ -848,36 +853,47 @@ ol {
 }
 
 .home-hero {
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
-  gap: var(--space-6);
-  min-height: calc(100vh - 13rem);
-  align-items: center;
+  width: min(calc(100vw - (var(--gutter) * 2)), 100rem);
+  max-width: none;
+  grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.22fr);
+  grid-template-areas:
+    "copy stage"
+    "rail stage";
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  min-height: calc(100vh - 11.5rem);
+  align-items: stretch;
 }
 
 .hero-copy {
+  grid-area: copy;
   display: grid;
   gap: var(--space-4);
   align-content: center;
-  max-width: 34rem;
+  align-self: center;
+  max-width: 35rem;
+  padding-block: clamp(1rem, 3vw, 3.25rem);
+  position: relative;
+  z-index: 1;
 }
 
 .hero-copy h1 {
-  max-width: 12ch;
+  max-width: 11ch;
   text-wrap: balance;
 }
 
 .hero-copy__lead {
-  max-width: 34rem;
+  max-width: 32rem;
   color: rgba(235, 228, 213, 0.82);
-  font-size: clamp(1rem, 1.3vw, 1.14rem);
+  font-size: clamp(1.02rem, 1.15vw, 1.2rem);
+  line-height: 1.72;
 }
 
 .hero-copy__motto {
-  max-width: 26rem;
+  max-width: 24rem;
   color: var(--jadelon-bone);
   font-family: var(--font-display);
-  font-size: clamp(1rem, 1vw + 0.76rem, 1.18rem);
-  line-height: 1.5;
+  font-size: clamp(1.04rem, 0.7vw + 0.9rem, 1.24rem);
+  line-height: 1.45;
 }
 
 .hero-copy__actions {
@@ -890,8 +906,17 @@ ol {
 .hero-copy__index {
   display: grid;
   gap: var(--space-3);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--color-line);
+  padding: 1.35rem 1.5rem 0;
+  border-top: 1px solid rgba(159, 131, 80, 0.2);
+}
+
+.hero-copy__index--rail {
+  grid-area: rail;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-self: end;
+  background:
+    linear-gradient(180deg, rgba(18, 23, 25, 0.22), rgba(18, 23, 25, 0)),
+    radial-gradient(circle at top left, rgba(100, 160, 141, 0.08), transparent 50%);
 }
 
 .hero-copy__index div {
@@ -913,28 +938,52 @@ ol {
 }
 
 .hero-stage {
+  grid-area: stage;
   position: relative;
   display: grid;
-  gap: var(--space-3);
+  min-height: clamp(34rem, 62vw, 51rem);
+  padding-block: clamp(0.4rem, 1.1vw, 0.9rem);
 }
 
 .hero-stage__measure {
+  position: absolute;
+  left: clamp(1rem, 2vw, 1.5rem);
+  right: clamp(1rem, 2vw, 1.5rem);
+  z-index: 4;
   display: flex;
   justify-content: space-between;
   gap: var(--space-3);
+  pointer-events: none;
 }
 
 .hero-stage__visual {
   position: relative;
-  min-height: clamp(25rem, 58vw, 43rem);
+  min-height: 100%;
   overflow: hidden;
-  border-radius: 18rem 18rem 1.8rem 1.8rem;
-  border: 1px solid rgba(159, 131, 80, 0.26);
+  border-radius: clamp(2rem, 4.5vw, 4rem);
+  border: 1px solid rgba(159, 131, 80, 0.22);
   background:
-    radial-gradient(circle at 50% 40%, rgba(100, 160, 141, 0.1), transparent 30%),
-    linear-gradient(180deg, rgba(15, 20, 22, 0.9), rgba(9, 11, 12, 0.98));
+    radial-gradient(circle at 58% 42%, rgba(100, 160, 141, 0.18), transparent 22%),
+    radial-gradient(circle at 62% 52%, rgba(159, 131, 80, 0.1), transparent 34%),
+    linear-gradient(180deg, rgba(15, 20, 22, 0.74), rgba(9, 11, 12, 0.94));
   box-shadow: var(--shadow-deep);
   isolation: isolate;
+}
+
+.hero-stage__visual::before {
+  content: "";
+  position: absolute;
+  inset: -12% 8% auto auto;
+  width: clamp(18rem, 36vw, 31rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(100, 160, 141, 0.26), transparent 56%),
+    radial-gradient(circle at 42% 42%, rgba(242, 234, 214, 0.08), transparent 38%);
+  filter: blur(28px);
+  opacity: 0.74;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-stage__visual::after {
@@ -942,36 +991,11 @@ ol {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(9, 11, 12, 0.1), rgba(9, 11, 12, 0.68)),
-    radial-gradient(circle at center, transparent 34%, rgba(9, 11, 12, 0.38) 72%);
+    linear-gradient(90deg, rgba(9, 11, 12, 0.06), transparent 24%, transparent 74%, rgba(9, 11, 12, 0.18)),
+    linear-gradient(180deg, rgba(9, 11, 12, 0.06), rgba(9, 11, 12, 0.34)),
+    radial-gradient(circle at 58% 48%, transparent 38%, rgba(9, 11, 12, 0.3) 72%);
   z-index: 2;
   pointer-events: none;
-}
-
-.hero-stage__grid,
-.hero-stage__aperture {
-  position: absolute;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.hero-stage__grid {
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(100, 160, 141, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(100, 160, 141, 0.08) 1px, transparent 1px);
-  background-size: 4rem 4rem;
-  mask-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.85) 18%, rgba(0, 0, 0, 0.92));
-}
-
-.hero-stage__aperture {
-  inset: 12% 16% 12% auto;
-  width: clamp(13rem, 28vw, 20rem);
-  border-radius: 999px;
-  border: 1px solid rgba(159, 131, 80, 0.46);
-  box-shadow:
-    0 0 0 1rem rgba(9, 11, 12, 0.08),
-    inset 0 0 0 1px rgba(100, 160, 141, 0.18);
 }
 
 .hero-stage__image,
@@ -1003,40 +1027,47 @@ ol {
   z-index: 0;
   opacity: 1;
   transition:
-    opacity 420ms var(--ease-standard),
-    transform 420ms var(--ease-standard);
+    opacity 520ms var(--ease-standard),
+    transform 520ms var(--ease-standard),
+    filter 520ms var(--ease-standard);
 }
 
 .public-globe__fallback[data-state="hidden"] {
   opacity: 0;
-  transform: scale(1.015);
+  transform: scale(1.03);
+  filter: saturate(0.94);
 }
 
 .public-globe__fallback-image {
   object-fit: cover;
-  object-position: center;
+  object-position: center 42%;
   opacity: 0.98;
-  transform: scale(1.02);
-  filter: saturate(1.02) brightness(1.04) contrast(1.02);
+  transform: scale(1.12);
+  filter: saturate(0.94) brightness(0.98) contrast(1.02);
 }
 
 .public-globe__veil {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(9, 11, 12, 0.06), rgba(9, 11, 12, 0.42)),
-    radial-gradient(circle at 50% 46%, rgba(100, 160, 141, 0.1), transparent 48%);
+    linear-gradient(90deg, rgba(9, 11, 12, 0.18), transparent 24%, transparent 74%, rgba(9, 11, 12, 0.26)),
+    linear-gradient(180deg, rgba(9, 11, 12, 0.08), rgba(9, 11, 12, 0.34)),
+    radial-gradient(circle at 58% 44%, rgba(100, 160, 141, 0.12), transparent 38%);
   pointer-events: none;
 }
 
 .public-globe__runtime {
   z-index: 1;
   opacity: 0;
-  transition: opacity 460ms var(--ease-standard);
+  transform: scale(0.985);
+  transition:
+    opacity 560ms var(--ease-standard),
+    transform 560ms var(--ease-standard);
 }
 
 .public-globe__runtime[data-visible="true"] {
   opacity: 1;
+  transform: scale(1);
 }
 
 .public-globe__runtime .globe-scene {
@@ -1045,21 +1076,21 @@ ol {
   border: 0;
   border-radius: inherit;
   background:
-    radial-gradient(circle at 50% 48%, rgba(100, 160, 141, 0.16), transparent 34%),
-    radial-gradient(circle at 50% 45%, rgba(199, 181, 119, 0.09), transparent 48%),
+    radial-gradient(circle at 56% 44%, rgba(100, 160, 141, 0.22), transparent 26%),
+    radial-gradient(circle at 56% 44%, rgba(199, 181, 119, 0.12), transparent 42%),
     linear-gradient(180deg, rgba(159, 131, 80, 0.06), rgba(9, 11, 12, 0.9));
   box-shadow: none;
 }
 
 .public-globe__runtime .globe-scene__halo {
-  inset: 10% 18%;
-  filter: blur(42px);
-  opacity: 0.92;
+  inset: 6% 10%;
+  filter: blur(52px);
+  opacity: 1;
 }
 
 .public-globe__runtime .globe-scene__frame {
-  inset: 7%;
-  border-radius: 2.8rem;
+  inset: 4%;
+  border-radius: clamp(1.7rem, 3.5vw, 3rem);
 }
 
 .public-globe__runtime .globe-stage-label {
@@ -1068,17 +1099,17 @@ ol {
 
 .public-globe__status {
   position: absolute;
-  left: 1.35rem;
-  bottom: 1.35rem;
+  left: 1.5rem;
+  bottom: 1.5rem;
   z-index: 4;
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   min-height: 2.75rem;
-  padding: 0.55rem 0.95rem;
-  border: 1px solid rgba(159, 131, 80, 0.34);
+  padding: 0.58rem 0.98rem;
+  border: 1px solid rgba(159, 131, 80, 0.26);
   border-radius: 999px;
-  background: rgba(9, 11, 12, 0.82);
+  background: rgba(9, 11, 12, 0.72);
   backdrop-filter: blur(12px);
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
 }
@@ -1331,6 +1362,12 @@ ol {
     border-right: 0;
   }
 
+  .site-header__inner,
+  .site-navigation,
+  .site-footer {
+    width: 100%;
+  }
+
   .site-navigation {
     overflow: hidden;
   }
@@ -1364,8 +1401,19 @@ ol {
     grid-template-columns: 1fr;
   }
 
+  .home-hero {
+    width: 100%;
+    grid-template-areas:
+      "copy"
+      "stage"
+      "rail";
+    gap: var(--space-4);
+    min-height: auto;
+  }
+
   .hero-copy {
     max-width: none;
+    padding-block: 0;
   }
 
   .hero-copy h1 {
@@ -1373,17 +1421,18 @@ ol {
   }
 
   .hero-stage {
-    order: 0;
+    min-height: clamp(20rem, 78vw, 28rem);
+    padding-block: 0;
   }
 
   .hero-stage__visual {
-    min-height: 17.25rem;
-    border-radius: 7.5rem 7.5rem 1rem 1rem;
+    min-height: 100%;
+    border-radius: 2rem;
   }
 
-  .hero-stage__aperture {
-    inset: 16% 10% 16% auto;
-    width: 9rem;
+  .hero-stage__measure {
+    left: 1rem;
+    right: 1rem;
   }
 
   .intro-band__ledger article:last-child {
@@ -1430,6 +1479,12 @@ ol {
     gap: var(--space-2);
   }
 
+  .hero-copy__index--rail {
+    grid-template-columns: 1fr;
+    padding: 0.95rem 0 0;
+    background: none;
+  }
+
   .hero-copy__motto {
     max-width: none;
   }
@@ -1442,8 +1497,8 @@ ol {
   }
 
   .public-globe__runtime .globe-scene__frame {
-    inset: 8%;
-    border-radius: 2rem;
+    inset: 5%;
+    border-radius: 1.6rem;
   }
 
   .site-footer__grid {

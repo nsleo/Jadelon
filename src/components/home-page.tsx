@@ -72,16 +72,6 @@ export function HomePage() {
             </TextLink>
             <TextLink className="text-link--cta" href="/cronologia">Percorra a Cronologia</TextLink>
           </div>
-          <dl className="hero-copy__index">
-            <div>
-              <dt>Territórios</dt>
-              <dd>Báaldrum, Snøklem e Brannslott.</dd>
-            </div>
-            <div>
-              <dt>Leituras</dt>
-              <dd>Atlas, cronologia e registros preservados.</dd>
-            </div>
-          </dl>
         </div>
 
         <div className="hero-stage">
@@ -90,8 +80,6 @@ export function HomePage() {
             <CoordinateLabel>Snøklem</CoordinateLabel>
           </div>
           <div className="hero-stage__visual">
-            <div aria-hidden="true" className="hero-stage__grid" />
-            <div aria-hidden="true" className="hero-stage__aperture" />
             <JadelonGlobeLoader priority publicMode />
           </div>
           <div className="hero-stage__measure hero-stage__measure--bottom">
@@ -99,6 +87,17 @@ export function HomePage() {
             <CoordinateLabel>Registros preservados</CoordinateLabel>
           </div>
         </div>
+
+        <dl className="hero-copy__index hero-copy__index--rail">
+          <div>
+            <dt>Territórios</dt>
+            <dd>Báaldrum, Snøklem e Brannslott.</dd>
+          </div>
+          <div>
+            <dt>Leituras</dt>
+            <dd>Atlas, cronologia e registros preservados.</dd>
+          </div>
+        </dl>
       </SectionFrame>
 
       <DividerRune />

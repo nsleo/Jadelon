@@ -115,7 +115,7 @@ export function JadelonGlobePublic({
           alt={fallbackAsset.alt}
           className="public-globe__fallback-image"
           priority={priority}
-          sizes="(max-width: 900px) 100vw, 48vw"
+          sizes="(max-width: 900px) 100vw, 62vw"
           src={fallbackAsset.publicUrl}
         />
         <div aria-hidden="true" className="public-globe__veil" />

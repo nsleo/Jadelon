@@ -21,25 +21,35 @@ import {
 type GlobeControls3DProps = {
   autoRotate: boolean;
   autoRotateSpeed: number;
+  dampingFactor?: number;
+  maxDistance?: number;
+  minDistance?: number;
   onInteractionChange: (active: boolean) => void;
   hotspots: GlobeHotspot[];
   sceneCommand: GlobeSceneCommand;
   reducedMotion: boolean;
+  rotateSpeed?: number;
   onTelemetry: (payload: {
     azimuthalAngle: number;
     polarAngle: number;
     distance: number;
   }) => void;
+  zoomSpeed?: number;
 };
 
 export function GlobeControls3D({
   autoRotate,
   autoRotateSpeed,
+  dampingFactor = 0.08,
+  maxDistance = prototypeGlobeCamera.maxDistance,
+  minDistance = prototypeGlobeCamera.minDistance,
   onInteractionChange,
   hotspots,
   sceneCommand,
   reducedMotion,
+  rotateSpeed = 0.65,
   onTelemetry,
+  zoomSpeed = 0.72,
 }: GlobeControls3DProps) {
   const controlsRef = useRef<ElementRef<typeof OrbitControls> | null>(null);
   const targetAngles = useRef<{ azimuthalAngle: number; polarAngle: number } | null>(null);
@@ -152,18 +162,19 @@ export function GlobeControls3D({
       ref={controlsRef}
       autoRotate={autoRotate}
       autoRotateSpeed={autoRotateSpeed}
+      dampingFactor={dampingFactor}
       enableDamping
       enablePan={false}
       enableZoom
       makeDefault
-      maxDistance={prototypeGlobeCamera.maxDistance}
+      maxDistance={maxDistance}
       maxPolarAngle={prototypeGlobeCamera.maxPolarAngle}
-      minDistance={prototypeGlobeCamera.minDistance}
+      minDistance={minDistance}
       minPolarAngle={prototypeGlobeCamera.minPolarAngle}
       onEnd={() => onInteractionChange(false)}
       onStart={() => onInteractionChange(true)}
-      rotateSpeed={0.65}
-      zoomSpeed={0.72}
+      rotateSpeed={rotateSpeed}
+      zoomSpeed={zoomSpeed}
     />
   );
 }

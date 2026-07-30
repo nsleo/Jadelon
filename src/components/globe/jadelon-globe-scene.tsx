@@ -23,6 +23,14 @@ import { GlobeSurface } from "@/components/globe/globe-surface";
 import { prototypeGlobeCamera } from "@/lib/globe/prototype-points";
 
 type JadelonGlobeSceneProps = {
+  cameraDistance?: number;
+  controlsDampingFactor?: number;
+  controlsMaxDistance?: number;
+  controlsMinDistance?: number;
+  controlsRotateSpeed?: number;
+  controlsZoomSpeed?: number;
+  globeRotation?: readonly [number, number, number];
+  globeScale?: number;
   mapAsset: GlobeMapAsset;
   hotspots: GlobeHotspot[];
   selectedHotspotId: string;
@@ -68,6 +76,14 @@ function SceneReadinessProbe({
 }
 
 export function JadelonGlobeScene({
+  cameraDistance = prototypeGlobeCamera.distance,
+  controlsDampingFactor,
+  controlsMaxDistance,
+  controlsMinDistance,
+  controlsRotateSpeed,
+  controlsZoomSpeed,
+  globeRotation = [0.04, -0.24, 0],
+  globeScale = 1.14,
   mapAsset,
   hotspots,
   selectedHotspotId,
@@ -92,7 +108,7 @@ export function JadelonGlobeScene({
           far: prototypeGlobeCamera.far,
           fov: prototypeGlobeCamera.fov,
           near: prototypeGlobeCamera.near,
-          position: [0, 0, prototypeGlobeCamera.distance],
+          position: [0, 0, cameraDistance],
         }}
         dpr={[1, quality.dpr]}
         gl={{
@@ -134,7 +150,10 @@ export function JadelonGlobeScene({
         <GlobeControls3D
           autoRotate={autoRotateEnabled && !reducedMotion}
           autoRotateSpeed={quality.autoRotateSpeed}
+          dampingFactor={controlsDampingFactor}
           hotspots={hotspots}
+          maxDistance={controlsMaxDistance}
+          minDistance={controlsMinDistance}
           onInteractionChange={onInteractionChange}
           onTelemetry={({ azimuthalAngle, polarAngle, distance }) => {
             onTelemetryChange({
@@ -147,9 +166,11 @@ export function JadelonGlobeScene({
             });
           }}
           reducedMotion={reducedMotion}
+          rotateSpeed={controlsRotateSpeed}
           sceneCommand={sceneCommand}
+          zoomSpeed={controlsZoomSpeed}
         />
-        <group rotation={[0.04, -0.24, 0]} scale={1.14}>
+        <group rotation={globeRotation} scale={globeScale}>
           <GlobeSurface
             key={mapAsset.id}
             materialMode={materialMode}

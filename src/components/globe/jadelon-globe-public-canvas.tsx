@@ -66,7 +66,15 @@ export function JadelonGlobePublicCanvas({
   const [interactionActive, setInteractionActive] = useState(false);
   const [rendererReady, setRendererReady] = useState(false);
   const [loadedTexture, setLoadedTexture] = useState<GlobeTextureReadyPayload | null>(null);
-  const quality = useMemo(() => getGlobeQualityProfile("medium"), []);
+  const quality = useMemo(() => {
+    const profile = getGlobeQualityProfile("high");
+
+    return {
+      ...profile,
+      autoRotateSpeed: 0.16,
+      dpr: 1.7,
+    };
+  }, []);
 
   const renderState: GlobeRenderState = !rendererReady
     ? "checking-webgl"
@@ -85,6 +93,14 @@ export function JadelonGlobePublicCanvas({
       >
         <JadelonGlobeScene
           autoRotateEnabled={!interactionActive && !reducedMotion}
+          cameraDistance={3.55}
+          controlsDampingFactor={0.065}
+          controlsMaxDistance={4.9}
+          controlsMinDistance={3}
+          controlsRotateSpeed={0.78}
+          controlsZoomSpeed={0.6}
+          globeRotation={[0.12, 0.48, 0.03]}
+          globeScale={1.28}
           hotspots={[]}
           mapAsset={mapAsset}
           materialMode="lit"
