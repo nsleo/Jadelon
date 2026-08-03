@@ -23,12 +23,14 @@ import { GlobeSurface } from "@/components/globe/globe-surface";
 import { prototypeGlobeCamera } from "@/lib/globe/prototype-points";
 
 type JadelonGlobeSceneProps = {
+  backgroundColor?: string | null;
   cameraDistance?: number;
   controlsDampingFactor?: number;
   controlsMaxDistance?: number;
   controlsMinDistance?: number;
   controlsRotateSpeed?: number;
   controlsZoomSpeed?: number;
+  enableShadows?: boolean;
   globeRotation?: readonly [number, number, number];
   globeScale?: number;
   mapAsset: GlobeMapAsset;
@@ -76,12 +78,14 @@ function SceneReadinessProbe({
 }
 
 export function JadelonGlobeScene({
+  backgroundColor = "#0d1112",
   cameraDistance = prototypeGlobeCamera.distance,
   controlsDampingFactor,
   controlsMaxDistance,
   controlsMinDistance,
   controlsRotateSpeed,
   controlsZoomSpeed,
+  enableShadows,
   globeRotation = [0.04, -0.24, 0],
   globeScale = 1.14,
   mapAsset,
@@ -137,9 +141,9 @@ export function JadelonGlobeScene({
             polarAngle: Math.PI / 2,
           });
         }}
-        shadows={quality.key !== "low"}
+        shadows={enableShadows ?? quality.key !== "low"}
       >
-        <color attach="background" args={["#0d1112"]} />
+        {backgroundColor ? <color attach="background" args={[backgroundColor]} /> : null}
         <ambientLight intensity={materialMode === "basic" ? 1 : 1.05} />
         <directionalLight color="#d9c58e" intensity={materialMode === "basic" ? 0 : 1.1} position={[3.8, 3.2, 4.2]} />
         <pointLight color="#5a8e80" intensity={materialMode === "basic" ? 0 : 0.38} position={[-3.2, -1.6, -3]} />

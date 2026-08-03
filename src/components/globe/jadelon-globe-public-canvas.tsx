@@ -67,12 +67,15 @@ export function JadelonGlobePublicCanvas({
   const [rendererReady, setRendererReady] = useState(false);
   const [loadedTexture, setLoadedTexture] = useState<GlobeTextureReadyPayload | null>(null);
   const quality = useMemo(() => {
-    const profile = getGlobeQualityProfile("high");
+    const profile = getGlobeQualityProfile("medium");
 
     return {
       ...profile,
-      autoRotateSpeed: 0.16,
-      dpr: 1.7,
+      anisotropy: 2,
+      antialias: false,
+      autoRotateSpeed: 0.12,
+      dpr: 1.2,
+      segments: 60,
     };
   }, []);
 
@@ -93,14 +96,16 @@ export function JadelonGlobePublicCanvas({
       >
         <JadelonGlobeScene
           autoRotateEnabled={!interactionActive && !reducedMotion}
-          cameraDistance={3.55}
-          controlsDampingFactor={0.065}
-          controlsMaxDistance={4.9}
-          controlsMinDistance={3}
-          controlsRotateSpeed={0.78}
-          controlsZoomSpeed={0.6}
-          globeRotation={[0.12, 0.48, 0.03]}
-          globeScale={1.28}
+          backgroundColor={null}
+          cameraDistance={3.15}
+          controlsDampingFactor={0.085}
+          controlsMaxDistance={4.35}
+          controlsMinDistance={2.75}
+          controlsRotateSpeed={0.96}
+          controlsZoomSpeed={0.52}
+          enableShadows={false}
+          globeRotation={[0.16, 1.02, -0.02]}
+          globeScale={1.34}
           hotspots={[]}
           mapAsset={mapAsset}
           materialMode="lit"
