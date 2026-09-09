@@ -937,13 +937,13 @@ ol {
   display: grid;
   min-height: clamp(41rem, 72vw, 61rem);
   align-items: center;
-  overflow: clip;
+  overflow: visible;
 }
 
 .hero-stage__visual {
   position: relative;
   min-height: inherit;
-  overflow: clip;
+  overflow: visible;
   background: none;
   box-shadow: none;
   isolation: isolate;
@@ -967,12 +967,12 @@ ol {
 .hero-stage__visual::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -18% -20% -24% -28%;
   background:
-    radial-gradient(circle at 66% 48%, rgba(9, 11, 12, 0), rgba(9, 11, 12, 0.08) 56%, rgba(9, 11, 12, 0.2) 74%, rgba(9, 11, 12, 0.52) 100%),
-    linear-gradient(90deg, rgba(9, 11, 12, 0.64) 0%, rgba(9, 11, 12, 0.16) 22%, rgba(9, 11, 12, 0) 36%, rgba(9, 11, 12, 0) 76%, rgba(9, 11, 12, 0.4) 100%),
-    linear-gradient(180deg, rgba(9, 11, 12, 0.16), rgba(9, 11, 12, 0.32));
-  filter: blur(18px);
+    radial-gradient(circle at 69% 48%, rgba(9, 11, 12, 0) 0%, rgba(9, 11, 12, 0.05) 48%, rgba(9, 11, 12, 0.24) 72%, rgba(9, 11, 12, 0.72) 100%),
+    radial-gradient(ellipse at 18% 48%, rgba(9, 11, 12, 0.78), rgba(9, 11, 12, 0.22) 34%, rgba(9, 11, 12, 0) 62%),
+    radial-gradient(ellipse at 58% 108%, rgba(9, 11, 12, 0.82), rgba(9, 11, 12, 0.24) 36%, rgba(9, 11, 12, 0) 68%);
+  filter: blur(24px);
   z-index: 1;
   pointer-events: none;
 }
@@ -995,14 +995,12 @@ ol {
   height: 100%;
   isolation: isolate;
   transform: none;
-  mask-image: radial-gradient(circle at 66% 50%, #000 0%, #000 62%, rgba(0, 0, 0, 0.92) 72%, rgba(0, 0, 0, 0.6) 84%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle at 66% 50%, #000 0%, #000 62%, rgba(0, 0, 0, 0.92) 72%, rgba(0, 0, 0, 0.6) 84%, transparent 100%);
 }
 
 .public-globe__fallback,
 .public-globe__runtime {
   position: absolute;
-  inset: -8% -16% -14% -10%;
+  inset: -18% -30% -24% -16%;
 }
 
 .public-globe__fallback {
@@ -1024,7 +1022,7 @@ ol {
   object-fit: cover;
   object-position: 54% 47%;
   opacity: 0.98;
-  transform: scale(1.42);
+  transform: scale(1.5);
   filter: saturate(0.94) brightness(0.99) contrast(1.02);
 }
 
@@ -1356,15 +1354,17 @@ ol {
   .hero-stage {
     min-height: clamp(21rem, 82vw, 30rem);
     order: -1;
+    overflow: clip;
   }
 
   .hero-stage__visual {
     min-height: 100%;
+    overflow: clip;
   }
 
   .public-globe__fallback,
   .public-globe__runtime {
-    inset: -4% -8% -8%;
+    inset: -8% -16% -12%;
   }
 
   .atlas-window__map {
