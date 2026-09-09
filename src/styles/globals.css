@@ -896,8 +896,8 @@ ol {
 }
 
 .home-hero {
-  grid-template-columns: minmax(17rem, 0.68fr) minmax(0, 1.32fr);
-  gap: clamp(1.25rem, 3vw, 3rem);
+  grid-template-columns: minmax(17rem, 0.58fr) minmax(0, 1.42fr);
+  gap: clamp(0.5rem, 1.5vw, 1.6rem);
   min-height: calc(100vh - 8.5rem);
   align-items: center;
 }
@@ -935,7 +935,7 @@ ol {
 .hero-stage {
   position: relative;
   display: grid;
-  min-height: clamp(41rem, 72vw, 61rem);
+  min-height: clamp(36rem, 62vw, 50rem);
   align-items: center;
   overflow: visible;
 }
@@ -952,14 +952,12 @@ ol {
 .hero-stage__visual::before {
   content: "";
   position: absolute;
-  inset: -2% -10% 0 3%;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  inset: -22% -34% -18% -20%;
   background:
-    radial-gradient(circle, rgba(100, 160, 141, 0.28), transparent 60%),
-    radial-gradient(circle at 42% 42%, rgba(242, 234, 214, 0.12), transparent 35%);
+    radial-gradient(ellipse at 62% 48%, rgba(100, 160, 141, 0.26), transparent 58%),
+    radial-gradient(ellipse at 30% 42%, rgba(242, 234, 214, 0.1), transparent 34%);
   filter: blur(62px);
-  opacity: 0.96;
+  opacity: 0.84;
   pointer-events: none;
   z-index: 0;
 }
@@ -975,6 +973,107 @@ ol {
   filter: blur(24px);
   z-index: 1;
   pointer-events: none;
+}
+
+.atlas-hero-map {
+  position: absolute;
+  inset: -12% -22% -14% -8%;
+  isolation: isolate;
+  overflow: visible;
+}
+
+.atlas-hero-map__image {
+  object-fit: cover;
+  object-position: 49% 47%;
+  opacity: 0.78;
+  filter: saturate(0.96) brightness(0.86) contrast(1.08);
+  transform: scale(1.06);
+}
+
+.atlas-hero-map__wash,
+.atlas-hero-map__grid,
+.atlas-hero-map__route {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.atlas-hero-map__wash {
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 60% 48%, rgba(9, 11, 12, 0) 0%, rgba(9, 11, 12, 0.06) 48%, rgba(9, 11, 12, 0.52) 100%),
+    linear-gradient(90deg, rgba(9, 11, 12, 0.92), rgba(9, 11, 12, 0.28) 20%, rgba(9, 11, 12, 0.03) 42%, rgba(9, 11, 12, 0.08) 74%, rgba(9, 11, 12, 0.86)),
+    linear-gradient(180deg, rgba(9, 11, 12, 0.7), rgba(9, 11, 12, 0.05) 34%, rgba(9, 11, 12, 0.2) 68%, rgba(9, 11, 12, 0.88));
+}
+
+.atlas-hero-map__grid {
+  z-index: 2;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(235, 228, 213, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(235, 228, 213, 0.12) 1px, transparent 1px);
+  background-position: center;
+  background-size: 9rem 9rem;
+  mask-image: radial-gradient(ellipse at 58% 48%, #000 0%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse at 58% 48%, #000 0%, transparent 72%);
+}
+
+.atlas-hero-map__route {
+  z-index: 3;
+  border: 1px solid rgba(199, 181, 119, 0.26);
+  border-color: rgba(199, 181, 119, 0.26) transparent transparent transparent;
+  border-radius: 50%;
+  opacity: 0.42;
+  transform: rotate(-8deg);
+}
+
+.atlas-hero-map__route--north {
+  inset: 12% 16% 54% 17%;
+}
+
+.atlas-hero-map__route--south {
+  inset: 49% 10% 18% 22%;
+  transform: rotate(7deg);
+}
+
+.atlas-hero-map__markers {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  list-style: none;
+  pointer-events: none;
+}
+
+.atlas-hero-map__marker {
+  position: absolute;
+  left: var(--marker-x);
+  top: var(--marker-y);
+  display: grid;
+  place-items: center;
+}
+
+.atlas-hero-map__marker::before {
+  content: "";
+  width: 0.56rem;
+  height: 0.56rem;
+  border: 1px solid rgba(242, 234, 214, 0.76);
+  border-radius: 50%;
+  background: rgba(199, 181, 119, 0.62);
+  box-shadow:
+    0 0 0 0.35rem rgba(199, 181, 119, 0.12),
+    0 0 1.4rem rgba(199, 181, 119, 0.34);
+}
+
+.atlas-hero-map__marker span {
+  position: absolute;
+  top: 0.75rem;
+  white-space: nowrap;
+  color: rgba(235, 228, 213, 0.72);
+  font-family: var(--font-utility);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-shadow: 0 0 1rem rgba(9, 11, 12, 0.86);
 }
 
 .hero-stage__image,
@@ -1352,7 +1451,7 @@ ol {
   }
 
   .hero-stage {
-    min-height: clamp(21rem, 82vw, 30rem);
+    min-height: clamp(18rem, 62vw, 24rem);
     order: -1;
     overflow: clip;
   }
@@ -1365,6 +1464,19 @@ ol {
   .public-globe__fallback,
   .public-globe__runtime {
     inset: -8% -16% -12%;
+  }
+
+  .atlas-hero-map {
+    inset: -8% -18% -10%;
+  }
+
+  .atlas-hero-map__image {
+    object-position: 45% 48%;
+    transform: scale(1.12);
+  }
+
+  .atlas-hero-map__markers {
+    display: none;
   }
 
   .atlas-window__map {

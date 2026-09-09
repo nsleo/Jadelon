@@ -41,7 +41,7 @@ test("home route exposes the structural shell and primary navigation", async ({ 
   await expect(primaryNav.getByRole("link", { name: "Registros", exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Helix" })).toHaveCount(0);
   await expect(page.getByRole("main")).toBeVisible();
-  await expect(page.getByTestId("public-globe")).toBeVisible();
+  await expect(page.getByTestId("public-atlas-hero")).toBeVisible();
 
   const bodyText = (await page.locator("body").innerText()).toLowerCase();
   for (const phrase of forbiddenPublicPhrases) {
@@ -49,7 +49,7 @@ test("home route exposes the structural shell and primary navigation", async ({ 
   }
 });
 
-test("home hero uses the promoted public globe without laboratory controls", async ({ page, isMobile }) => {
+test("home hero uses the promoted public atlas without laboratory controls", async ({ page }) => {
   const consoleErrors: string[] = [];
   page.on("console", (message) => {
     if (message.type() === "error") {
@@ -59,22 +59,15 @@ test("home hero uses the promoted public globe without laboratory controls", asy
 
   await page.goto("/");
 
-  const publicGlobe = page.getByTestId("public-globe");
-  await expect(publicGlobe).toBeVisible();
-  await expect(publicGlobe).toHaveAttribute("data-texture-id", "map-globe-jadelon-v1");
-  await expect(publicGlobe).toHaveAttribute(
-    "data-texture-url",
-    "/assets/jadelon/maps/mapa-globo-jadelon-v1.webp",
+  const publicAtlas = page.getByTestId("public-atlas-hero");
+  await expect(publicAtlas).toBeVisible();
+  await expect(publicAtlas).toHaveAttribute("data-asset-id", "map-atlas-jadelon-v1");
+  await expect(publicAtlas).toHaveAttribute(
+    "data-asset-url",
+    "/assets/jadelon/maps/mapa-atlas-jadelon-v1.webp",
   );
-  await expect(publicGlobe).toHaveAttribute("data-fallback-asset-id", "map-atlas-jadelon-v1");
   await expect(page.getByText("Controles de laboratorio do globo")).toHaveCount(0);
   await expect(page.getByText("Diagnostico do prototipo")).toHaveCount(0);
-
-  if (isMobile) {
-    await expect(publicGlobe).toHaveAttribute("data-globe-state", "ready-2d");
-  } else {
-    await expect(publicGlobe).toHaveAttribute("data-globe-state", /ready-(2d|3d)/);
-  }
 
   expect(consoleErrors).toEqual([]);
 });
@@ -142,7 +135,7 @@ test("reduced motion collapses transition duration", async ({ page }) => {
   });
 
   expect(["0.01ms", "1e-05s"]).toContain(duration);
-  await expect(page.getByTestId("public-globe")).toHaveAttribute("data-auto-rotate", "off");
+  await expect(page.getByTestId("public-atlas-hero")).toBeVisible();
 });
 
 test("home and placeholder pages keep semantic headings", async ({ page }) => {

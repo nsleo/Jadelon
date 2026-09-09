@@ -94,12 +94,17 @@ test("public globe layer does not reference candidate projections or lab control
     path.resolve(process.cwd(), "src/components/globe/jadelon-globe-public.tsx"),
     "utf8",
   );
+
+  assert.doesNotMatch(publicComponent, /mapa-globo-projection-p55|mapa-globo-projection-p65/);
+  assert.doesNotMatch(publicComponent, /GlobeLabControls|Renderer|Checksum|Projection/);
+});
+
+test("home hero uses the promoted atlas instead of the public globe runtime", () => {
   const homeSource = fs.readFileSync(
     path.resolve(process.cwd(), "src/components/home-page.tsx"),
     "utf8",
   );
 
-  assert.doesNotMatch(publicComponent, /mapa-globo-projection-p55|mapa-globo-projection-p65/);
-  assert.doesNotMatch(publicComponent, /GlobeLabControls|Renderer|Checksum|Projection/);
-  assert.match(homeSource, /JadelonGlobeLoader priority publicMode/);
+  assert.match(homeSource, /JadelonAtlasHero/);
+  assert.doesNotMatch(homeSource, /JadelonGlobeLoader|publicMode/);
 });

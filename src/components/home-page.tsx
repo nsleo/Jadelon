@@ -4,7 +4,7 @@ import {
   SectionHeading,
   TextLink,
 } from "@/components/site/primitives";
-import { JadelonGlobeLoader } from "@/components/globe/jadelon-globe-loader";
+import { JadelonAtlasHero } from "@/components/atlas/jadelon-atlas-hero";
 import { CartographicImage } from "@/components/site/cartographic-image";
 import {
   getPublicAssetById,
@@ -73,7 +73,7 @@ export function HomePage() {
 
         <div className="hero-stage">
           <div className="hero-stage__visual">
-            <JadelonGlobeLoader priority publicMode />
+            <JadelonAtlasHero asset={atlasAsset} priority />
           </div>
         </div>
       </SectionFrame>
