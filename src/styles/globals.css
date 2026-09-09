@@ -935,7 +935,7 @@ ol {
 .hero-stage {
   position: relative;
   display: grid;
-  min-height: clamp(39rem, 68vw, 58rem);
+  min-height: clamp(41rem, 72vw, 61rem);
   align-items: center;
   overflow: clip;
 }
@@ -943,7 +943,7 @@ ol {
 .hero-stage__visual {
   position: relative;
   min-height: inherit;
-  overflow: visible;
+  overflow: clip;
   background: none;
   box-shadow: none;
   isolation: isolate;
@@ -952,14 +952,14 @@ ol {
 .hero-stage__visual::before {
   content: "";
   position: absolute;
-  inset: 2% -4% 4% 8%;
+  inset: -2% -10% 0 3%;
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(100, 160, 141, 0.26), transparent 58%),
-    radial-gradient(circle at 42% 42%, rgba(242, 234, 214, 0.1), transparent 34%);
-  filter: blur(52px);
-  opacity: 0.9;
+    radial-gradient(circle, rgba(100, 160, 141, 0.28), transparent 60%),
+    radial-gradient(circle at 42% 42%, rgba(242, 234, 214, 0.12), transparent 35%);
+  filter: blur(62px);
+  opacity: 0.96;
   pointer-events: none;
   z-index: 0;
 }
@@ -967,11 +967,12 @@ ol {
 .hero-stage__visual::after {
   content: "";
   position: absolute;
-  inset: 6% -2% 6% 10%;
+  inset: 0;
   background:
-    radial-gradient(circle at 54% 45%, rgba(9, 11, 12, 0), rgba(9, 11, 12, 0.18) 68%, rgba(9, 11, 12, 0.28)),
-    linear-gradient(180deg, rgba(9, 11, 12, 0.04), rgba(9, 11, 12, 0.18));
-  filter: blur(14px);
+    radial-gradient(circle at 66% 48%, rgba(9, 11, 12, 0), rgba(9, 11, 12, 0.08) 56%, rgba(9, 11, 12, 0.2) 74%, rgba(9, 11, 12, 0.52) 100%),
+    linear-gradient(90deg, rgba(9, 11, 12, 0.64) 0%, rgba(9, 11, 12, 0.16) 22%, rgba(9, 11, 12, 0) 36%, rgba(9, 11, 12, 0) 76%, rgba(9, 11, 12, 0.4) 100%),
+    linear-gradient(180deg, rgba(9, 11, 12, 0.16), rgba(9, 11, 12, 0.32));
+  filter: blur(18px);
   z-index: 1;
   pointer-events: none;
 }
@@ -994,12 +995,14 @@ ol {
   height: 100%;
   isolation: isolate;
   transform: none;
+  mask-image: radial-gradient(circle at 66% 50%, #000 0%, #000 62%, rgba(0, 0, 0, 0.92) 72%, rgba(0, 0, 0, 0.6) 84%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at 66% 50%, #000 0%, #000 62%, rgba(0, 0, 0, 0.92) 72%, rgba(0, 0, 0, 0.6) 84%, transparent 100%);
 }
 
 .public-globe__fallback,
 .public-globe__runtime {
   position: absolute;
-  inset: -4% -8% -6% -4%;
+  inset: -8% -16% -14% -10%;
 }
 
 .public-globe__fallback {
@@ -1019,10 +1022,10 @@ ol {
 
 .public-globe__fallback-image {
   object-fit: cover;
-  object-position: center 48%;
+  object-position: 54% 47%;
   opacity: 0.98;
-  transform: scale(1.28);
-  filter: saturate(0.94) brightness(0.98) contrast(1.02);
+  transform: scale(1.42);
+  filter: saturate(0.94) brightness(0.99) contrast(1.02);
 }
 
 .public-globe__veil {
@@ -1065,9 +1068,9 @@ ol {
 }
 
 .public-globe__runtime .globe-scene__halo {
-  inset: 6% 14% 10% 12%;
-  filter: blur(56px);
-  opacity: 0.84;
+  inset: 4% 10% 8% 8%;
+  filter: blur(64px);
+  opacity: 0.88;
 }
 
 .public-globe__runtime .globe-scene__frame {
@@ -1351,7 +1354,7 @@ ol {
   }
 
   .hero-stage {
-    min-height: clamp(20rem, 78vw, 28rem);
+    min-height: clamp(21rem, 82vw, 30rem);
     order: -1;
   }
 
@@ -1361,7 +1364,7 @@ ol {
 
   .public-globe__fallback,
   .public-globe__runtime {
-    inset: -2% -2% -4%;
+    inset: -4% -8% -8%;
   }
 
   .atlas-window__map {
