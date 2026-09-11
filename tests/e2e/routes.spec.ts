@@ -39,6 +39,7 @@ test("home route exposes the structural shell and primary navigation", async ({ 
   await expect(primaryNav.getByRole("link", { name: "Eternos", exact: true })).toBeVisible();
   await expect(primaryNav.getByRole("link", { name: "Magia", exact: true })).toBeVisible();
   await expect(primaryNav.getByRole("link", { name: "Registros", exact: true })).toBeVisible();
+  await expect(primaryNav.getByRole("link", { name: "Wiki", exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Helix" })).toHaveCount(0);
   await expect(page.getByRole("main")).toBeVisible();
   await expect(page.getByTestId("public-atlas-hero")).toBeVisible();
@@ -98,6 +99,21 @@ test("basic navigation works across the minimum published routes", async ({ page
     await expect(page).toHaveURL(new RegExp(`${route.href}$`));
     await expect(page.getByRole("heading", { name: route.heading })).toBeVisible();
   }
+});
+
+test("internal wiki filters lore and keeps private entries opt-out", async ({ page }) => {
+  await page.goto("/wiki");
+
+  await expect(page.getByRole("heading", { name: "Wiki de Jadelon" })).toBeVisible();
+  await expect(page.getByText("Xharas-Tor: atualização territorial", { exact: true })).toBeVisible();
+
+  await page.getByRole("checkbox", { name: "Mostrar lore privada" }).uncheck();
+  await expect(page.getByText("Xharas-Tor: atualização territorial", { exact: true })).toHaveCount(0);
+
+  await page.getByRole("checkbox", { name: "Mostrar lore privada" }).check();
+  await page.getByPlaceholder("Nome, lugar, casa, Eterno...").fill("Harasq");
+  await expect(page.getByText("Rios e lagos canônicos", { exact: true })).toBeVisible();
+  await expect(page.getByText("Províncias atuais de Xharas-Tor", { exact: true })).toBeVisible();
 });
 
 test("mobile navigation can be opened and closed", async ({ page, isMobile }) => {

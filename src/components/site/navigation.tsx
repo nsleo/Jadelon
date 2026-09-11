@@ -19,6 +19,7 @@ const navigationItems = [
   { href: "/eternos", label: "Eternos" },
   { href: "/magia", label: "Magia" },
   { href: "/registros", label: "Registros" },
+  { href: "/wiki", label: "Wiki" },
 ];
 
 export function SiteNavigation({
@@ -183,6 +184,7 @@ export function SiteFooter() {
           <TextLink href="/cronologia">Cronologia</TextLink>
           <TextLink href="/figuras">Figuras</TextLink>
           <TextLink href="/registros">Registros</TextLink>
+          <TextLink href="/wiki">Wiki</TextLink>
         </nav>
       </div>
     </footer>
